@@ -31,7 +31,6 @@ describe("When Logged in",async ()=>{
         await page.login()
         await page.click('a.btn-floating')
     })
-
     test('Can see the blog creation form  ',async ()=>{
 
         const label = await page.getContentsOf('form label')
