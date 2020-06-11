@@ -6,10 +6,12 @@ const keys = require('../config/keys');
 const User = mongoose.model('User');
 
 passport.serializeUser((user, done) => {
+  console.log("serialize",user)
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
+  console.log("deserialize",id)
   User.findById(id).then(user => {
     done(null, user);
   });
@@ -18,7 +20,7 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL: '/auth/google/callback',
+      callbackURL: '/auth/google/redirect',
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       proxy: true
